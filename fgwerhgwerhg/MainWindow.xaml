@@ -6,7 +6,57 @@
         xmlns:local="clr-namespace:fgwerhgwerhg"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
+   <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        
+        <GroupBox Header="Idősávok Állapota (6:00 - 21:00)" Grid.Column="0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="TimeSlotsItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#CCCCCC" BorderThickness="1" Margin="3" Padding="8" CornerRadius="4" Background="{Binding BackgroundColor}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding TimeLabel}" FontWeight="Bold" FontSize="14"/>
+                                    <TextBlock Text="{Binding StatusText}" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </GroupBox>
+
+      
+        <GroupBox Header="Új Foglalás" Grid.Column="2">
+            <StackPanel Margin="10">
+                <TextBlock Text="Név / Kontakt személy:"/>
+                <TextBox x:Name="TxtName" Margin="0,3,0,10" Padding="3"/>
+
+                <TextBlock Text="Idősáv (óra):"/>
+                <ComboBox x:Name="CmbTime" Margin="0,3,0,10"/>
+
+                <TextBlock Text="Foglalás Típusa:"/>
+                <RadioButton x:Name="RbSingle" Content="Egyéni" IsChecked="True" Checked="Type_Changed" Margin="0,5,0,0"/>
+                <RadioButton x:Name="RbTeam" Content="Csoportos" Checked="Type_Changed" Margin="0,3,0,10"/>
+
+                <StackPanel x:Name="PanelSingle" Visibility="Visible" Margin="0,0,0,10">
+                    <CheckBox x:Name="ChkSeasonTicket" Content="Van bérlete"/>
+                </StackPanel>
+
+               
+                <StackPanel x:Name="PanelTeam" Visibility="Collapsed" Margin="0,0,0,10">
+                    <TextBlock Text="Csapattagok (vesszővel elválasztva):"/>
+                    <TextBox x:Name="TxtTeamMembers" Margin="0,3,0,0" Padding="3"/>
+                </StackPanel>
+
+                <Button Content="Foglalás Mentése" Click="BtnReserve_Click" Height="35" Background="#007ACC" Foreground="White" FontWeight="Bold" Margin="0,10,0,0"/>
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </Window>
