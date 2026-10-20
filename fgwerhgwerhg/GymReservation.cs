@@ -4,7 +4,7 @@ using System.Text;
 
 namespace fgwerhgwerhg
 {
-    internal interface GymReservation
+    public interface GymReservation
     {
         string GetContactName();
         int GetReservationTime();
